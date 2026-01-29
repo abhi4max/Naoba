@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Naoba! 🎉</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B9D;
+            --secondary: #FFC849;
+            --accent: #4ECDC4;
+            --purple: #9B59B6;
+            --bg: #FFF5F7;
+            --text: #2C3E50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            position: absolute;
+            animation: confetti-fall linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .confetti:nth-child(2n) { background: var(--secondary); animation-duration: 3s; }
+        .confetti:nth-child(3n) { background: var(--accent); animation-duration: 4s; }
+        .confetti:nth-child(4n) { background: var(--purple); animation-duration: 3.5s; }
+
+        /* Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        /* Main Birthday Card */
+        .birthday-card {
+            background: white;
+            border-radius: 40px;
+            padding: 4rem 3rem;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 
+                0 20px 60px rgba(255, 107, 157, 0.3),
+                0 0 0 1px rgba(255, 107, 157, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        .birthday-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 157, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Birthday Hat */
+        .birthday-hat {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            position: relative;
+            animation: wiggle 1s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .hat-cone {
+            width: 0;
+            height: 0;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 100px solid var(--primary);
+            position: relative;
+        }
+
+        .hat-pom {
+            width: 30px;
+            height: 30px;
+            background: var(--secondary);
+            border-radius: 50%;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 0.5s ease infinite alternate;
+        }
+
+        @keyframes bounce {
+            to { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .hat-rim {
+            width: 140px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 10px;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Text Styles */
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+            line-height: 1.2;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(20deg); }
+        }
+
+        .name {
+            font-family: 'Caveat', cursive;
+            font-size: 5rem;
+            color: var(--secondary);
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 
+                3px 3px 0 var(--primary),
+                6px 6px 0 var(--accent);
+            animation: pop 0.5s ease forwards;
+            animation-delay: 0.3s;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        @keyframes pop {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .message {
+            font-size: 1.3rem;
+            text-align: center;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.6s;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Balloons */
+        .balloons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .balloon {
+            width: 80px;
+            height: 100px;
+            background: var(--primary);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: relative;
+            animation: float-balloon 3s ease-in-out infinite;
+        }
+
+        .balloon:nth-child(1) { 
+            background: var(--primary); 
+            animation-delay: 0s;
+        }
+        .balloon:nth-child(2) { 
+            background: var(--secondary); 
+            animation-delay: 0.5s;
+        }
+        .balloon:nth-child(3) { 
+            background: var(--accent); 
+            animation-delay: 1s;
+        }
+        .balloon:nth-child(4) { 
+            background: var(--purple); 
+            animation-delay: 1.5s;
+        }
+
+        @keyframes float-balloon {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            width: 2px;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.2);
+            transform: translateX(-50%);
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            background: inherit;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Button */
+        .celebrate-btn {
+            display: block;
+            margin: 3rem auto 0;
+            padding: 1.2rem 3rem;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--purple));
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .celebrate-btn:hover {
+            transform: scale(1.1) rotate(-2deg);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+        }
+
+        .celebrate-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Celebration Overlay */
+        .celebration-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .celebration-overlay.active {
+            display: flex;
+        }
+
+        .celebration-message {
+            background: white;
+            padding: 3rem;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 500px;
+            animation: scaleIn 0.5s ease;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .celebration-message h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .celebration-message p {
+            font-size: 1.5rem;
+            color: var(--text);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .name { 
+                font-size: 3.5rem;
+                text-shadow: 
+                    2px 2px 0 var(--primary),
+                    4px 4px 0 var(--accent);
+            }
+            .message { font-size: 1.1rem; }
+            .birthday-card { padding: 3rem 2rem; }
+            .balloons { gap: 1rem; }
+            .balloon { 
+                width: 60px;
+                height: 75px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Confetti Background -->
+    <div id="confetti-container"></div>
+
+    <div class="container">
+        <div class="birthday-card">
+            <div class="card-content">
+                <div class="birthday-hat">
+                    <div class="hat-cone">
+                        <div class="hat-pom"></div>
+                    </div>
+                    <div class="hat-rim"></div>
+                </div>
+
+                <h1>Happy Birthday</h1>
+                <div class="name">Naoba!</div>
+                
+                <p class="message">
+                    🎂 Wishing you a day filled with joy, laughter, and all your favorite things! 
+                    May this year bring you endless happiness and amazing adventures! 🎈
+                </p>
+
+                <div class="balloons">
+                    <div class="balloon"></div>
+                    <div class="balloon"></div>
+                    <div class="balloon"></div>
+                    <div class="balloon"></div>
+                </div>
+
+                <button class="celebrate-btn" onclick="celebrate()">
+                    🎉 Click to Celebrate! 🎉
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="celebration-overlay" id="celebrationOverlay" onclick="closeCelebration()">
+        <div class="celebration-message">
+            <h2>🎊 Hooray! 🎊</h2>
+            <p>Hope your birthday is as awesome as you are, Naoba!</p>
+        </div>
+    </div>
+
+    <script>
+        // Generate confetti
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                container.appendChild(confetti);
+            }
+        }
+
+        function celebrate() {
+            const overlay = document.getElementById('celebrationOverlay');
+            overlay.classList.add('active');
+            
+            // Create extra confetti burst
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '0';
+                confetti.style.animationDelay = '0s';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 4000);
+            }
+        }
+
+        function closeCelebration() {
+            const overlay = document.getElementById('celebrationOverlay');
+            overlay.classList.remove('active');
+        }
+
+        // Initialize
+        createConfetti();
+    </script>
+</body>
+</html>
